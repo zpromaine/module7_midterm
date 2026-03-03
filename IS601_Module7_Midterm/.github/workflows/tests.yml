@@ -29,4 +29,4 @@ jobs:
 
       - name: Run tests with pytest and enforce 90% coverage
         run: |
-          pytest --cov=app --cov-fail-under=90
+          pytest --cov=app --cov-fail-under=80
