@@ -11,7 +11,7 @@ from app.exceptions import ConfigurationError
 
 load_dotenv()
 
-def get_project_root()
+def get_project_root():
     
     current_file = Path(__file__)
     return current_file.parent.parent
@@ -100,7 +100,7 @@ class CalculatorConfig:
         )).resolve()
 
     def validate(self) -> None:
-         if self.max_history_size <= 0:
+        if self.max_history_size <= 0:
             raise ConfigurationError("max_history_size must be positive")
         if self.precision <= 0:
             raise ConfigurationError("precision must be positive")
