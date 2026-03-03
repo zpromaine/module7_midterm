@@ -1,7 +1,7 @@
 import pytest
 from decimal import Decimal
 from datetime import datetime
-from app.calculation import Calculator
+from app.calculation import Calculation
 from app.exception import OperationError
 import logging
 
