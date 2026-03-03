@@ -1,6 +1,6 @@
 import datetime
 from pathlib import Path
-## import pandas as pd
+import pandas as pd
 import pytest
 from unittest.mock import Mock, patch, PropertyMock
 from decimal import Decimal
@@ -12,13 +12,14 @@ from app.exceptions import OperationError, ValidationError
 from app.history import LoggingObserver, AutoSaveObserver
 from app.operations import OperationFactory
 
+# Fixture to initialize Calculator with a temporary directory for file paths
 @pytest.fixture
 def calculator():
-    with TemporaryDirectoryI() as temp_dir:
+    with TemporaryDirectory() as temp_dir:
         temp_path = Path(temp_dir)
         config = CalculatorConfig(base_dir=temp_path)
 
-         # Patch properties to use the temporary directory paths
+        # Patch properties to use the temporary directory paths
         with patch.object(CalculatorConfig, 'log_dir', new_callable=PropertyMock) as mock_log_dir, \
              patch.object(CalculatorConfig, 'log_file', new_callable=PropertyMock) as mock_log_file, \
              patch.object(CalculatorConfig, 'history_dir', new_callable=PropertyMock) as mock_history_dir, \
