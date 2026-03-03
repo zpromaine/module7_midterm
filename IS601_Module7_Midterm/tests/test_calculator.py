@@ -13,8 +13,8 @@ from app.history import LoggingObserver, AutoSaveObserver
 from app.operations import OperationFactory
 
 @pytest.fixture
-def calculator()
-    with TemporaryDirectoryI() as temp_dir
+def calculator():
+    with TemporaryDirectoryI() as temp_dir:
         temp_path = Path(temp_dir)
         config = CalculatorConfig(base_dir=temp_path)
 

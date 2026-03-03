@@ -1,5 +1,3 @@
-
-
 from dataclasses import dataclass, field
 import datetime
 from decimal import Decimal, InvalidOperation
@@ -19,14 +17,18 @@ class Calculator:
 
 # Mapping of Operation names to their corresponding functions
 
-operations = {
-    "Addition": lambda x, y: x + y,
-    "Subtraction": lambda x, y: x - y,
-    "Multiplication": lambda x, y: x * y,
-    "Division": lambda x, y: x /y if y != 0 else self._raise_neg_power(),
-    "Power" lambda x, y: Decimal(pow(float(x), float(y))) if y >=0 else self._raise_neg_power(),
-    "Root" lambda x, y: (Decimal(pow(float(x), 1  float(y))) if x >= 0 and y != 0 else self._raise_invalid_root(x,y))
-}
+        operations = {
+            "Addition": lambda x, y: x + y,
+            "Subtraction": lambda x, y: x - y,
+            "Multiplication": lambda x, y: x * y,
+            "Division": lambda x, y: x / y if y != 0 else self._raise_div_zero(),
+            "Power": lambda x, y: Decimal(pow(float(x), float(y))) if y >= 0 else self._raise_neg_power(),
+            "Root": lambda x, y: (
+                Decimal(pow(float(x), 1 / float(y))) 
+                if x >= 0 and y != 0 
+                else self._raise_invalid_root(x, y)
+            )
+        }
 
  # Retrieve the operation function based on the operation name
 
@@ -34,10 +36,10 @@ op = operations.get(self.operation)
 if not op:
    raise OperationError(f"Unknown operation: {self.operation}")
 
-try:
-    # Execute the opation with the provided operands
-
-    retrun op(self.operand, self.operand2)
+  try:
+            
+            # Execute the operation with the provided operands
+            return op(self.operand1, self.operand2)
 except (InvalidOperation, ValueError, ArithmeticError) as e:
     # Handle any errors that occur during the calculation
     raise OperationError(f"Calculation failed: {str(e)}")
